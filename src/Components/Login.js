@@ -60,7 +60,7 @@ function Login ()
                                 showPassword=>!showPassword
                             )
                             }
-                    }></img>
+                    } alt="visible"></img>
                     :
                     <img src={eye} className='h-6 w-6 cursor-pointer' onClick={
                         ()=>{
@@ -69,12 +69,12 @@ function Login ()
                                 
                             )
                         }
-                    }></img>
+                    } alt="hidden"></img>
                 
               }
                 </div>
-                <div>
-                    <div className="flex flex-row justify-between
+                </div>
+                    <div className="mt-3 flex flex-row justify-between
                     w-3/5
                     ">
                     <span className='font-bold'
@@ -84,9 +84,7 @@ function Login ()
                     '>
                         Forgot Password?</span>
                     </div>
-
-                </div>
-                <div className='bg-purple-700 w-2/5 text-white text-center p-2' onClick={
+                <div className='mt-3 bg-purple-700 w-2/5 text-white text-center p-2' onClick={
                     ()=>
                         {
                             console.log(obj);
@@ -94,7 +92,7 @@ function Login ()
                 }>
                         Login
                 </div>
-                </div>
+                
             </form>
         </div>
     );
