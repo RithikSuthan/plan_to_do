@@ -82,7 +82,7 @@ function Register()
                 className='mt-2 bg-pink-400 p-2 text-white placeholder:text-white'
                 placeholder="Confirm Password" onBlur={(e)=>{
                         const inputVal=e.target.value;
-                        if(confirmPassword!==obj.password)
+                        if(inputVal!==obj.password)
                             {
                                 alert("password Dont match");   
                             }
