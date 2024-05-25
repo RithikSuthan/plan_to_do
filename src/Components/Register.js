@@ -1,8 +1,10 @@
 import { useState } from "react";
 import eye from "./Images/eye.png";
 import hidden from "./Images/hidden.png";
+import { useNavigate } from "react-router-dom";
 function Register()
 {
+    const navigate=useNavigate();
     let [showPassword,setshowPassword]=useState(false);
     let[confirmPassword,setConfirm]=useState(false);
     let [obj,setObj]=useState(
@@ -17,7 +19,13 @@ function Register()
             <div className='font-sans font-bold text-purple-900 items-center flex'>
             Plan To Do
             </div>
-            <div className='bg-purple-800 p-2 text-white rounded-xl'>
+            <div className='bg-purple-800 p-2 text-white rounded-xl
+            cursor-pointer
+            ' onClick={()=>
+                {
+                    navigate('/');
+                }
+            }>
                 Sign In
             </div>
             </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import eye from "./Images/eye.png";
 import hidden from "./Images/hidden.png";
+import { useNavigate } from 'react-router-dom';
 function Login ()
 {
     
@@ -10,7 +11,7 @@ function Login ()
             password:""
         }
     );
-
+    const navigate=useNavigate();
     let [showPassword,setshowPassword]=useState(false);
     return(
         <div className="bg-pink-200 w-4/5 rounded-2xl p-5" style={{marginTop:"5%",margin:"10%"}}>
@@ -18,7 +19,13 @@ function Login ()
             <div className='font-sans font-bold text-purple-900 items-center flex'>
             Plan To Do
             </div>
-            <div className='bg-purple-800 p-2 text-white rounded-xl'>
+            <div className='cursor-pointer bg-purple-800 p-2 text-white rounded-xl' onClick={
+                (e)=>
+                    {
+                        // console.log(e);
+                        navigate('/register');
+                    }
+            }>
                 Sign Up
             </div>
             </div>
