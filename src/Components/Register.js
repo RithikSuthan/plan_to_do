@@ -2,6 +2,7 @@ import { useState } from "react";
 import eye from "./Images/eye.png";
 import hidden from "./Images/hidden.png";
 import { useNavigate } from "react-router-dom";
+import { register } from "./api";
 function Register()
 {
     const navigate=useNavigate();
@@ -119,10 +120,27 @@ function Register()
               }
                 </div>
                 </div>
-                <div className='mt-4 bg-purple-700 w-2/5 text-white text-center p-2' onClick={
-                    ()=>
+                <div className='mt-4 bg-purple-700 w-2/5 text-white text-center p-2 cursor-pointer' onClick={
+                    async ()=>
                         {
-                            console.log(obj);
+                           try
+                           {
+                            const response=await register(obj);
+                            if(response==="Email or password is empty")
+                                {
+                                    alert("Email or password is empty");
+                                }
+                            else
+                            {
+                                alert("Registration Successful");
+                                navigate("/");
+                            }
+                           }
+                           catch(error)
+                           {
+                            console.error("error");
+                           }
+                                                
                         }
                 }>
                         Register
