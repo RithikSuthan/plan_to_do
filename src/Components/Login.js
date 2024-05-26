@@ -2,6 +2,7 @@ import { useState } from "react";
 import eye from "./Images/eye.png";
 import hidden from "./Images/hidden.png";
 import { useNavigate } from 'react-router-dom';
+import { login } from "./api";
 function Login ()
 {
     
@@ -91,10 +92,28 @@ function Login ()
                     '>
                         Forgot Password?</span>
                     </div>
-                <div className='mt-3 bg-purple-700 w-2/5 text-white text-center p-2' onClick={
-                    ()=>
+                <div className='mt-3 bg-purple-700 w-2/5 text-white text-center p-2 cursor-pointer' onClick={
+                    async ()=>
                         {
-                            console.log(obj);
+                            try
+                            {
+                                let response=await login(obj);
+                                if(response==="User exist")
+                                    {
+                                        alert("Login Success");
+                                        localStorage.setItem("email",obj.email);
+                                        console.log(obj);
+                                        navigate("/home");
+                                    }
+                                else
+                                {
+                                    alert("User doesn't exist register please");
+                                }
+                            }
+                            catch(error)
+                            {
+                                console.log(error);
+                            }
                         }
                 }>
                         Login
