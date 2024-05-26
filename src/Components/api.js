@@ -43,3 +43,15 @@ export const addTask=async (obj)=>
             console.error(error);
         }
     }
+export const loadData=async(email)=>
+    {
+        try
+        {
+            let response=await apiClient.get(`/fetch?email=${email}`)
+            return response.data;
+        }
+        catch(error)
+        {
+            console.error(error);
+        }
+    }

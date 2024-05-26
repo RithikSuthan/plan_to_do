@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { addTask } from "./api";
+import { loadData } from "./api";
 export function Home()
 {
     const [addModel,setAddModel]=useState(false);
@@ -12,12 +13,38 @@ export function Home()
             addedBy:""
         }
     )
+    const[data,setData]=useState(null);
+    const loadDashboard=async()=>
+        {
+            try
+            {
+                let response=await loadData(localStorage.getItem("email"));
+                setData(response);
+                // alert("Valled");
+                console.log(response);
+            }
+            catch(error)
+            {
+                // alert("Error");
+                console.error(error);
+            }
+        }
+useEffect(()=>{
+
+    loadDashboard();
+}
+,[])
 useEffect(()=>
 {
     console.log(obj);
 },[obj]);
+
+
 return(
-<div>
+    <div>
+        {
+            data?
+            <div>
 <div className="flex justify-end">
     <button className='cursor-pointer bg-purple-800 p-3 mt-2 mr-2 text-white rounded-md'
     onClick={()=>
@@ -71,8 +98,9 @@ return(
                     {
                         e.preventDefault();
 
-                        const updatedObj={...obj,taskNo:uuidv4,addedBy:localStorage.getItem("email")};
+                        const updatedObj={...obj,taskNo:uuidv4(),addedBy:localStorage.getItem("email")};
                         setObj(updatedObj);
+                        
                         // setObj({...obj,addedBy:uuidv4()})
                         try
                         {
@@ -106,6 +134,10 @@ return(
 <div>
 
 </div>
-</div>
+</div>:
+<div>Loading please wait</div>
+        }
+    </div>
+
     );
 }
