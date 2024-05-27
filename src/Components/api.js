@@ -55,3 +55,15 @@ export const loadData=async(email)=>
             console.error(error);
         }
     }
+export const deletePlan=async(taskNo)=>
+    {
+        try
+        {
+            let response=await apiClient.delete(`/delete?taskNo=${taskNo}`)
+            return response.data;
+        }
+        catch(error)
+        {
+            console.error(error);
+        }
+    }

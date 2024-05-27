@@ -2,6 +2,8 @@ import { useState,useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { addTask } from "./api";
 import { loadData } from "./api";
+import { Card } from "./Card";
+import { deletePlan } from "./api";
 export function Home()
 {
     const [addModel,setAddModel]=useState(false);
@@ -29,6 +31,25 @@ export function Home()
                 console.error(error);
             }
         }
+    const handleDeleteParent=async (taskNo)=>
+        {
+            try{
+                let response= await deletePlan(taskNo);
+                if (response==="Plan deleted Successfully")
+                    {
+                        alert("Plan deleted Successfully");
+                        loadDashboard();
+                    }   
+                else
+                {
+                    alert("Plan deletion failed");
+                }
+            }
+            catch(error)
+            {
+                console.error(error);
+            }
+        }
 useEffect(()=>{
 
     loadDashboard();
@@ -36,7 +57,7 @@ useEffect(()=>{
 ,[])
 useEffect(()=>
 {
-    console.log(obj);
+    // console.log(obj);
 },[obj]);
 
 
@@ -111,7 +132,8 @@ return(
                                     setObj(prevObj=>
                                         ({...prevObj,plan:""})
                                     );
-                                    
+                                    setAddModel(addModel=>!addModel);
+                                    loadDashboard();
                                 }
                             else
                             {
@@ -132,8 +154,8 @@ return(
 <></>
 }
 <div>
-
 </div>
+<Card data={data} handleChildDelete={handleDeleteParent}/>
 </div>:
 <div>Loading please wait</div>
         }
