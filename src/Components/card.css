@@ -28,3 +28,7 @@
         height: 74vh;
     }
   }
+
+  .checkbox-large {
+    transform: scale(2.0); /* Adjust the scale value as needed */
+}

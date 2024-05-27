@@ -23,7 +23,7 @@ export function Card(props)
                     data.map((value) => (
                         <div key={value.taskNo} className='bg-blue-400 text-justify p-2 text-white w-5/6 justify-between flex m-3'>
                             <div className="w-3/5 flex text-xl items-center">
-                                <input type="checkbox" className="mr-1" checked={value.status} onChange={
+                                <input type="checkbox" className="mr-3 checkbox-large" checked={value.status} onChange={
                                     ()=>handleStatus(value.taskNo)
                                 }/>
                                 {value.plan}
