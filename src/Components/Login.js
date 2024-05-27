@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import eye from "./Images/eye.png";
 import hidden from "./Images/hidden.png";
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +12,19 @@ function Login ()
             password:""
         }
     );
+    const checkLocal=()=>
+        {
+            let val=localStorage.getItem("email");
+            if(val!==null)
+                {
+                    navigate("/home");
+                }
+        }
+    useEffect(()=>{
+
+            checkLocal();
+        }
+        ,[])
     const navigate=useNavigate();
     let [showPassword,setshowPassword]=useState(false);
     return(

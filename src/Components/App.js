@@ -8,8 +8,9 @@ import { Footer } from './Footer';
 function App() {
   return (
     <div>
-      <Header/>
+      
       <BrowserRouter>
+      <Header/>
       <Routes>
         <Route path='/' Component={Login}>
         </Route>
