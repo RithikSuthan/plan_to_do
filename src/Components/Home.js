@@ -4,9 +4,19 @@ import { addTask } from "./api";
 import { loadData } from "./api";
 import { Card } from "./Card";
 import { deletePlan } from "./api";
+import { editPlan } from "./api";
 export function Home()
 {
     const [addModel,setAddModel]=useState(false);
+    const[editModel,seteditModel]=useState(false);
+    const[editObj,setEditObj]=useState(
+        {
+            taskNo:"",
+            plan:"",
+            status:"",
+            addedBy:""
+        }
+    )
     const [obj,setObj]=useState(
         {
             taskNo:"",
@@ -50,6 +60,19 @@ export function Home()
                 console.error(error);
             }
         }
+    const handleEdit=(taskNo)=>
+        {
+            seteditModel(editModel=>!editModel);
+            const foundObj=data.find(tempObj=>tempObj.taskNo===taskNo);
+            if(foundObj)
+                {
+                    setEditObj(foundObj);
+                }
+        }
+useEffect(()=>
+    {
+        // console.log(editObj);
+    },[editObj])
 useEffect(()=>{
 
     loadDashboard();
@@ -153,9 +176,79 @@ return(
 </div>:
 <></>
 }
-<div>
+
+{/* Edit */}
+{ editModel?
+<div className='bg-pink-300 w-full md:w-2/5
+'>
+    <div className="flex justify-between">
+        <div>Edit Task</div>
+        <div className='bg-red-600 p-2 text-xl
+        cursor-pointer
+        '
+        onClick={
+            ()=>
+                {
+                    seteditModel(editModell=>!editModel);
+                }
+        }
+        >X</div>
+    </div>
+<div className ="flex justify-center">
+    <form className="mt-2">
+        <div className="mt-2 mb-2">
+        <label className="mr-2">Task:</label>
+        <input type="text" required
+        value={editObj.plan}
+        onChange={
+            (e)=>
+                {
+                    setEditObj({...editObj,plan:e.target.value});
+                } 
+            }  
+            
+        ></input>
+        </div>
+        <div className="flex justify-center">
+            <button
+            className="bg-purple-700 text-white p-3
+            pl-6 pr-6 rounded-md"
+            onClick={
+                async (e)=>
+                    {
+                        e.preventDefault();
+                        try
+                        {
+                            console.log(editObj);
+                            let response=await editPlan(editObj.taskNo,editObj.plan);
+                            if(response==="Plan modified successfully")
+                                {
+                                    alert("Plan modified successfully");
+                                    // setEditObj(prevObj=>
+                                    //     ({...prevObj,plan:""})
+                                    // );
+                                    seteditModel(editModel=>!editModel);
+                                    loadDashboard();
+                                }
+                            else
+                            {
+                                alert("Any of the given field is empty");
+                            }
+                        }
+                        catch(error)
+                        {
+                            console.error(error);
+                        }
+                    }
+            }       
+            > Edit </button>
+        </div>
+    </form>
 </div>
-<Card data={data} handleChildDelete={handleDeleteParent}/>
+</div>:
+<></>
+}
+<Card data={data} handleChildDelete={handleDeleteParent} editParent={handleEdit}/>
 </div>:
 <div>Loading please wait</div>
         }

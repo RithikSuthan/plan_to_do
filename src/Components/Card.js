@@ -6,6 +6,10 @@ export function Card(props)
             // alert("Clickef")
             props.handleChildDelete(taskNo);
         }
+    const handleEdit=(taskNo)=>
+        {
+            props.editParent(taskNo);
+        }
         return (
             <div>
                 {!Array.isArray(data) || data.length === 0 ? (
@@ -18,7 +22,9 @@ export function Card(props)
                                 {value.plan}
                             </div>
                             <div className="w-1/5 text-justify flex justify-around flex-col md:flex-row">
-                                <button className='bg-green-700 p-2 pl-4 pr-4 rounded-md'>Edit</button>
+                                <button className='bg-green-700 p-2 pl-4 pr-4 rounded-md'
+                                onClick={()=>handleEdit(value.taskNo)}
+                                >Edit</button>
                                 <button className='bg-red-500 p-2 rounded-md' onClick={() => handleDelete(value.taskNo)}>Delete</button>
                             </div>
                         </div>

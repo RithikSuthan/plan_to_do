@@ -67,3 +67,16 @@ export const deletePlan=async(taskNo)=>
             console.error(error);
         }
     }
+export const editPlan=async(taskNo,plan)=>
+    {
+        console.log(taskNo," ",plan);
+        try
+        {
+            let response=await apiClient.patch(`edit?taskNo=${taskNo}&plan=${plan}`)
+            return response.data;
+        }
+        catch(error)
+        {
+            console.error(error);
+        }
+    }
