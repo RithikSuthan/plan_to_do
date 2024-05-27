@@ -72,7 +72,20 @@ export const editPlan=async(taskNo,plan)=>
         console.log(taskNo," ",plan);
         try
         {
-            let response=await apiClient.patch(`edit?taskNo=${taskNo}&plan=${plan}`)
+            let response=await apiClient.patch(`/edit?taskNo=${taskNo}&plan=${plan}`)
+            return response.data;
+        }
+        catch(error)
+        {
+            console.error(error);
+        }
+    }
+export const editStatus=async(taskNo)=>
+    {
+        console.log("gfgf");
+        try
+        {
+            let response=await apiClient.patch(`/status?taskNo=${taskNo}`);
             return response.data;
         }
         catch(error)

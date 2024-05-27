@@ -5,6 +5,7 @@ import { loadData } from "./api";
 import { Card } from "./Card";
 import { deletePlan } from "./api";
 import { editPlan } from "./api";
+import { editStatus } from "./api";
 export function Home()
 {
     const [addModel,setAddModel]=useState(false);
@@ -25,6 +26,22 @@ export function Home()
             addedBy:""
         }
     )
+    const editStatusPlan=async (taskNo)=>
+        {
+            try
+            {
+                let response=await editStatus(taskNo);
+                if(response==="Plan status update failed")
+                    {
+                        alert("Plan status update failed");                         
+                    }
+                    loadDashboard();  
+            }
+            catch(error)
+            {
+                console.error(error);
+            }
+        }
     const[data,setData]=useState(null);
     const loadDashboard=async()=>
         {
@@ -248,7 +265,7 @@ return(
 </div>:
 <></>
 }
-<Card data={data} handleChildDelete={handleDeleteParent} editParent={handleEdit}/>
+<Card data={data} handleChildDelete={handleDeleteParent} editParent={handleEdit} editStatus={editStatusPlan}/>
 </div>:
 <div>Loading please wait</div>
         }

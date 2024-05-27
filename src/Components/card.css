@@ -1,0 +1,30 @@
+@media only screen and (min-width: 100px) {
+    .dashboard
+    {
+        height: 80vh;
+    }
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    .dashboard
+    {
+        height: 80vh;
+    }
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .dashboard
+    {
+        height: 80vh;
+    }
+  } 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    .dashboard
+    {
+        height: 80vh;
+    }
+  }
