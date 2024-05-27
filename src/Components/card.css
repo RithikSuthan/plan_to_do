@@ -1,7 +1,7 @@
 @media only screen and (min-width: 100px) {
     .dashboard
     {
-        height: 80vh;
+        height: 74vh;
     }
   }
   
@@ -9,7 +9,7 @@
   @media only screen and (min-width: 768px) {
     .dashboard
     {
-        height: 80vh;
+        height: 74vh;
     }
   } 
   
@@ -17,7 +17,7 @@
   @media only screen and (min-width: 992px) {
     .dashboard
     {
-        height: 80vh;
+        height: 74vh;
     }
   } 
   
@@ -25,6 +25,6 @@
   @media only screen and (min-width: 1200px) {
     .dashboard
     {
-        height: 80vh;
+        height: 74vh;
     }
   }

@@ -4,6 +4,7 @@ import Login from './Login';
 import Register from './Register';
 import Header from './Header';
 import { Home } from './Home';
+import { Footer } from './Footer';
 function App() {
   return (
     <div>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/home" Component={Home}></Route>
       </Routes>
       </BrowserRouter>
+      <Footer/>
     </div>
   );
 }
